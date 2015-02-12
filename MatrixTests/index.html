@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../lib/easeljs-0.7.1.combined.js"></script>
+</head>
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <img id="pattern" src="pattern-1.png" style="display:none">
+    <script>
+        var c = createjs;
+        var stage = new c.Stage("canvas");
+        var shape1 = new c.Shape();
+        var g = shape1.graphics;
+        var img = document.getElementById("pattern");
+        g.bf(img).dr(0,0,300,150).ef();
+
+        var shape2 = new c.Shape();
+        g = shape2.graphics;
+        g.bf(img, "repeat", new c.Matrix2D().rotate(90* c.Matrix2D.DEG_TO_RAD)).dr(0,0,300,150).ef();
+
+        shape1.alpha = shape2.alpha = 0.5;
+
+        shape1.x = 50;
+        shape2.x = 100;
+        shape1.y = 60;
+        shape2.y = 120;
+
+        var angle = 15 * c.Matrix2D.DEG_TO_RAD;
+
+        var sincos = new c.Matrix2D();
+        sincos.append();
+        stage.addChild(shape1, shape2);
+        stage.update();
+    </script>
+</body>
+</html>
